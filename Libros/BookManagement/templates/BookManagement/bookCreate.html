@@ -18,9 +18,24 @@
         <h1>Crear libros</h1>
         <div class="row">
             <div class="col-12">
-                <p>{{ bookForm }}</p>
+                <form action="{% url 'BookManagement:bookCreate' %}" method="post">
+                    {% csrf_token %}
+                    <label for="title" class="form-label">Titulo</label>
+                    {{ bookForm.title }}
+                    <div id="title" class="form-text">We'll never share your email with anyone else.</div>
+
+                    <label for="description" class="form-label">Descripcion</label>
+                    {{ bookForm.description }}
+                    <div id="description" class="form-text">We'll never share your email with anyone else.</div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
+        <ul>
+            {% for book in bookList %}
+            <li>{{book}}</li>
+            {% endfor %}
+        </ul>
     </div>
 
 
